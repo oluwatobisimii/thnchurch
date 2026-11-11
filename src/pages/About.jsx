@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Target, Compass, Award, Heart, Shield, Sparkles } from 'lucide-react';
-import AnimatedSection, { StaggerContainer, StaggerItem } from '../components/AnimatedSection';
+import AnimatedSection, { StaggerContainer, StaggerItem, RH1, RH2 } from '../components/AnimatedSection';
 
 export default function About() {
   return (
@@ -11,9 +11,9 @@ export default function About() {
         <span className="badge badge-gold" style={{ marginBottom: '18px' }}>
           Who We Are & What Drives Us
         </span>
-        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '20px' }}>
+        <RH1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '20px' }}>
           The HAvEN Nation Inc
-        </h1>
+        </RH1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1.15rem', maxWidth: '820px', margin: '0 auto', lineHeight: '1.8' }}>
           We are more than just a church; we are a prophetic movement commissioned by God to recover lost destinies, raise spiritual giants, and establish kingdom dominance across territories.
         </p>
@@ -28,8 +28,8 @@ export default function About() {
           />
           <div className="editorial-scrim"></div>
           <div className="editorial-badge" style={{ top: '24px', left: '24px' }}>
-            <Sparkles size={14} style={{ color: '#C2D971' }} />
-            <span>Apostolic Mandate &bull; Raising Kingdom Giants</span>
+            <Sparkles size={14} />
+            <span>Apostolic Mandate<span className="hide-sm"> &bull; Raising Kingdom Giants</span></span>
           </div>
           <div style={{ position: 'absolute', bottom: '28px', left: '28px', right: '28px', color: '#FFFFFF' }}>
             <h3 style={{ fontSize: '1.5rem', color: '#FFFFFF', marginBottom: '6px' }}>Pastors Tomiwa & Olamide Oluyen</h3>
@@ -81,9 +81,9 @@ export default function About() {
       <section style={{ marginBottom: '88px' }}>
         <AnimatedSection direction="up" style={{ textAlign: 'center', marginBottom: '56px' }}>
           <span className="badge badge-gold" style={{ marginBottom: '14px' }}>Our Journey</span>
-          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.7rem)' }}>
+          <RH2 style={{ fontSize: 'clamp(2rem, 4vw, 2.7rem)' }}>
             The Story of The HAvEN Nation
-          </h2>
+          </RH2>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.08rem', maxWidth: '640px', margin: '12px auto 0 auto' }}>
             Faithful stewardship from a visionary fellowship to an apostolic headquarters
           </p>
@@ -157,9 +157,9 @@ export default function About() {
       <section style={{ marginBottom: '64px' }}>
         <AnimatedSection direction="up" style={{ textAlign: 'center', marginBottom: '56px' }}>
           <span className="badge badge-gold" style={{ marginBottom: '14px' }}>Core Pillars</span>
-          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.7rem)' }}>
+          <RH2 style={{ fontSize: 'clamp(2rem, 4vw, 2.7rem)' }}>
             Our Kingdom Culture
-          </h2>
+          </RH2>
         </AnimatedSection>
 
         <StaggerContainer className="grid-3" style={{ gap: '32px' }}>

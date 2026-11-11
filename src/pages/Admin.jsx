@@ -149,6 +149,13 @@ export default function Admin({ siteData, reloadSiteData }) {
     });
   };
 
+  const updateGiving = (key, value) => {
+    setLocalData(prev => ({
+      ...prev,
+      churchInfo: { ...prev.churchInfo, giving: { ...(prev.churchInfo.giving || {}), [key]: value } },
+    }));
+  };
+
   // --- CRUD SAVING PIPELINES ---
 
   // Programs CRUD
@@ -383,7 +390,7 @@ export default function Admin({ siteData, reloadSiteData }) {
   }
 
   return (
-    <div className="container section-padding animate-fade-in" style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '40px', alignItems: 'start' }}>
+    <div className="container section-padding animate-fade-in stack-md" style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '40px', alignItems: 'start' }}>
       
       {/* Sidebar navigation */}
       <aside className="glass-card" style={{ padding: '20px' }}>
@@ -474,7 +481,7 @@ export default function Admin({ siteData, reloadSiteData }) {
             {/* General settings tab */}
             {activeTab === 'settings' && (
               <form onSubmit={handleSaveData} className="glass-card">
-                <h2 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '20px', color: '#fff' }}>Site Configuration</h2>
+                <h2 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '20px' }}>Site Configuration</h2>
                 <div className="form-group">
                   <label className="form-label">Church Name</label>
                   <input className="form-control" type="text" value={localData.churchInfo.name} onChange={e => updateNestedProperty('churchInfo', 'name', e.target.value)} />
@@ -482,6 +489,25 @@ export default function Admin({ siteData, reloadSiteData }) {
                 <div className="form-group">
                   <label className="form-label">Yearly Theme</label>
                   <input className="form-control" type="text" value={localData.churchInfo.theme2026} onChange={e => updateNestedProperty('churchInfo', 'theme2026', e.target.value)} />
+                </div>
+                <h3 style={{ fontSize: '1.15rem', margin: '28px 0 6px' }}>Giving Details</h3>
+                <p style={{ fontSize: '0.88rem', marginBottom: '16px' }}>Each payment method only appears on the Give page once its details are filled in. Leave a field empty to hide it.</p>
+                {[
+                  ['bankName', 'Bank Name', 'e.g. Zenith Bank'],
+                  ['accountName', 'Account Name', 'e.g. The Haven Nation Inc'],
+                  ['accountNumber', 'Account Number', '10-digit NUBAN'],
+                  ['paystackLink', 'Paystack Payment Page Link', 'https://paystack.com/pay/...'],
+                  ['paypal', 'PayPal.Me Link', 'https://paypal.me/...'],
+                ].map(([key, label, ph]) => (
+                  <div className="form-group" key={key}>
+                    <label className="form-label">{label}</label>
+                    <input className="form-control" type="text" placeholder={ph} value={localData.churchInfo.giving?.[key] || ''} onChange={e => updateGiving(key, e.target.value)} />
+                  </div>
+                ))}
+                <h3 style={{ fontSize: '1.15rem', margin: '28px 0 6px' }}>Form Emails</h3>
+                <div className="form-group">
+                  <label className="form-label">Official Email (contact & sign-up forms are sent here)</label>
+                  <input className="form-control" type="email" value={localData.churchInfo.emails?.official || ''} onChange={e => updateTripleNestedProperty('churchInfo', 'emails', 'official', e.target.value)} />
                 </div>
                 <button type="submit" disabled={submitting} className="btn btn-primary">Save Settings</button>
               </form>
@@ -491,7 +517,7 @@ export default function Admin({ siteData, reloadSiteData }) {
             {activeTab === 'programs' && (
               <div className="glass-card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                  <h2 className="font-serif" style={{ fontSize: '1.5rem', color: '#fff' }}>Calendar Schedules</h2>
+                  <h2 className="font-serif" style={{ fontSize: '1.5rem' }}>Calendar Schedules</h2>
                   {!editingProgram && <button onClick={() => { setEditingProgram('new'); setProgramForm({ id: '', name: '', description: '', date: '', time: '', venue: '', host: '', month: 'January' }); }} className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '0.8rem' }}><Plus size={14} /> Add Program</button>}
                 </div>
 
@@ -542,7 +568,7 @@ export default function Admin({ siteData, reloadSiteData }) {
                   {localData.programs.map(p => (
                     <div key={p.id} style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-glass)', padding: '12px 15px', borderRadius: '8px' }}>
                       <div>
-                        <h4 style={{ color: '#fff', fontSize: '0.95rem' }}>{p.name} <span style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>({p.month})</span></h4>
+                        <h4 style={{ color: 'var(--text-main)', fontSize: '0.95rem' }}>{p.name} <span style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>({p.month})</span></h4>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{p.date} &bull; {p.venue}</span>
                       </div>
                       <div style={{ display: 'flex', gap: '10px' }}>
@@ -559,7 +585,7 @@ export default function Admin({ siteData, reloadSiteData }) {
             {activeTab === 'sermons' && (
               <div className="glass-card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                  <h2 className="font-serif" style={{ fontSize: '1.5rem', color: '#fff' }}>Sermons Catalog</h2>
+                  <h2 className="font-serif" style={{ fontSize: '1.5rem' }}>Sermons Catalog</h2>
                   {!editingSermon && <button onClick={() => { setEditingSermon('new'); setSermonForm({ id: '', title: '', speaker: 'Pastor Tomiwa Oluyen', series: '', topic: '', date: '', notes: '', link: '' }); }} className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '0.8rem' }}><Plus size={14} /> Add Sermon</button>}
                 </div>
 
@@ -608,7 +634,7 @@ export default function Admin({ siteData, reloadSiteData }) {
                   {(localData.sermons || []).map(s => (
                     <div key={s.id} style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-glass)', padding: '12px 15px', borderRadius: '8px' }}>
                       <div>
-                        <h4 style={{ color: '#fff', fontSize: '0.95rem' }}>{s.title}</h4>
+                        <h4 style={{ color: 'var(--text-main)', fontSize: '0.95rem' }}>{s.title}</h4>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{s.speaker} &bull; Series: {s.series}</span>
                       </div>
                       <div style={{ display: 'flex', gap: '10px' }}>
@@ -625,7 +651,7 @@ export default function Admin({ siteData, reloadSiteData }) {
             {activeTab === 'devotionals' && (
               <div className="glass-card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                  <h2 className="font-serif" style={{ fontSize: '1.5rem', color: '#fff' }}>Devotionals (Impact Notes)</h2>
+                  <h2 className="font-serif" style={{ fontSize: '1.5rem' }}>Devotionals (Impact Notes)</h2>
                   {!editingDevotional && <button onClick={() => { setEditingDevotional('new'); setDevotionalForm({ id: '', title: '', scripture: '', keyPoint: '', writeup: '', date: '' }); }} className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '0.8rem' }}><Plus size={14} /> Add Devotional</button>}
                 </div>
 
@@ -664,7 +690,7 @@ export default function Admin({ siteData, reloadSiteData }) {
                   {(localData.devotionals || []).map(d => (
                     <div key={d.id} style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-glass)', padding: '12px 15px', borderRadius: '8px' }}>
                       <div>
-                        <h4 style={{ color: '#fff', fontSize: '0.95rem' }}>{d.title}</h4>
+                        <h4 style={{ color: 'var(--text-main)', fontSize: '0.95rem' }}>{d.title}</h4>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Date: {d.date} &bull; Scripture: {d.scripture}</span>
                       </div>
                       <div style={{ display: 'flex', gap: '10px' }}>
@@ -681,7 +707,7 @@ export default function Admin({ siteData, reloadSiteData }) {
             {activeTab === 'testimonies' && (
               <div className="glass-card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                  <h2 className="font-serif" style={{ fontSize: '1.5rem', color: '#fff' }}>Testimony Portal</h2>
+                  <h2 className="font-serif" style={{ fontSize: '1.5rem' }}>Testimony Portal</h2>
                   {!editingTestimony && <button onClick={() => { setEditingTestimony('new'); setTestimonyForm({ id: '', name: '', category: 'General', title: '', content: '', date: '' }); }} className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '0.8rem' }}><Plus size={14} /> Add Testimony</button>}
                 </div>
 
@@ -722,7 +748,7 @@ export default function Admin({ siteData, reloadSiteData }) {
                   {(localData.testimonies || []).map(t => (
                     <div key={t.id} style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-glass)', padding: '12px 15px', borderRadius: '8px' }}>
                       <div>
-                        <h4 style={{ color: '#fff', fontSize: '0.95rem' }}>{t.title} <span style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>({t.category})</span></h4>
+                        <h4 style={{ color: 'var(--text-main)', fontSize: '0.95rem' }}>{t.title} <span style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>({t.category})</span></h4>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Name: {t.name} &bull; Date: {t.date}</span>
                       </div>
                       <div style={{ display: 'flex', gap: '10px' }}>
@@ -739,7 +765,7 @@ export default function Admin({ siteData, reloadSiteData }) {
             {activeTab === 'courses' && (
               <div className="glass-card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                  <h2 className="font-serif" style={{ fontSize: '1.5rem', color: '#fff' }}>Giants Academy Courses</h2>
+                  <h2 className="font-serif" style={{ fontSize: '1.5rem' }}>Giants Academy Courses</h2>
                   {!editingCourse && <button onClick={() => { setEditingCourse('new'); setCourseForm({ id: '', title: '', instructor: '', duration: '', description: '' }); }} className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '0.8rem' }}><Plus size={14} /> Add Course</button>}
                 </div>
 
@@ -774,7 +800,7 @@ export default function Admin({ siteData, reloadSiteData }) {
                   {(localData.courses || []).map(c => (
                     <div key={c.id} style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-glass)', padding: '12px 15px', borderRadius: '8px' }}>
                       <div>
-                        <h4 style={{ color: '#fff', fontSize: '0.95rem' }}>{c.title} <span style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>({c.duration})</span></h4>
+                        <h4 style={{ color: 'var(--text-main)', fontSize: '0.95rem' }}>{c.title} <span style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>({c.duration})</span></h4>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Instructor: {c.instructor}</span>
                       </div>
                       <div style={{ display: 'flex', gap: '10px' }}>
@@ -790,7 +816,7 @@ export default function Admin({ siteData, reloadSiteData }) {
             {/* Leadership units tab */}
             {activeTab === 'leadership' && (
               <div className="glass-card">
-                <h2 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '20px', color: '#fff' }}>Officers & Departmental Heads</h2>
+                <h2 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '20px' }}>Officers & Departmental Heads</h2>
                 
                 <h3 className="font-serif" style={{ fontSize: '1.2rem', color: 'var(--primary)', marginBottom: '15px' }}>Pastors & Leadership</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '30px' }}>
@@ -839,12 +865,12 @@ export default function Admin({ siteData, reloadSiteData }) {
             {/* Declarations & Prophecies */}
             {activeTab === 'declarations' && (
               <div className="glass-card">
-                <h2 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '20px', color: '#fff' }}>Yearly Prophecies</h2>
+                <h2 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '20px' }}>Yearly Prophecies</h2>
                 
                 {['havenNation', 'global', 'family', 'general'].map(category => (
                   <div key={category} style={{ background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-glass)', padding: '20px', borderRadius: '10px', marginBottom: '20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-                      <h4 style={{ textTransform: 'capitalize', color: '#fff', fontSize: '0.98rem' }}>{category === 'havenNation' ? 'Haven Nation Inc' : category} Prophecies</h4>
+                      <h4 style={{ textTransform: 'capitalize', color: 'var(--text-main)', fontSize: '0.98rem' }}>{category === 'havenNation' ? 'Haven Nation Inc' : category} Prophecies</h4>
                       <button type="button" onClick={() => {
                         const copy = { ...localData };
                         copy.prophecies[category].push('');
@@ -872,7 +898,7 @@ export default function Admin({ siteData, reloadSiteData }) {
             {/* Inboxes & Registers Tab */}
             {activeTab === 'messages' && (
               <div className="glass-card">
-                <h2 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '20px', color: '#fff' }}>Signups & Inboxes</h2>
+                <h2 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '20px' }}>Signups & Inboxes</h2>
                 
                 {/* Nested sub-tabs */}
                 <div style={{ display: 'flex', borderBottom: '1px solid var(--border-glass)', gap: '10px', marginBottom: '20px', overflowX: 'auto' }}>
@@ -901,12 +927,12 @@ export default function Admin({ siteData, reloadSiteData }) {
                 {messagesLoading ? (
                   <p style={{ color: 'var(--text-muted)' }}>Loading registries...</p>
                 ) : (
-                  <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '20px', alignItems: 'start' }}>
+                  <div className="stack-md" style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '20px', alignItems: 'start' }}>
                     {/* Left register list */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '450px', overflowY: 'auto' }}>
                       {activeSubTab === 'messages' && messages.map(msg => (
                         <div key={msg.id} onClick={() => setSelectedInboxItem(msg)} className="glass-card" style={{ padding: '12px', cursor: 'pointer', background: selectedInboxItem?.id === msg.id ? 'var(--primary-glow)' : 'rgba(255,255,255,0.01)', borderColor: selectedInboxItem?.id === msg.id ? 'var(--primary)' : 'var(--border-glass)' }}>
-                          <h4 style={{ color: '#fff', fontSize: '0.9rem' }}>{msg.name}</h4>
+                          <h4 style={{ color: 'var(--text-main)', fontSize: '0.9rem' }}>{msg.name}</h4>
                           <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{msg.subject.slice(0, 30)}...</span>
                           <span style={{ display: 'block', fontSize: '0.72rem', color: 'var(--primary)', marginTop: '4px' }}>{msg.timestamp}</span>
                         </div>
@@ -914,7 +940,7 @@ export default function Admin({ siteData, reloadSiteData }) {
 
                       {activeSubTab === 'visits' && (submissions.visits || []).map(item => (
                         <div key={item.id} onClick={() => setSelectedInboxItem(item)} className="glass-card" style={{ padding: '12px', cursor: 'pointer', background: selectedInboxItem?.id === item.id ? 'var(--primary-glow)' : 'rgba(255,255,255,0.01)', borderColor: selectedInboxItem?.id === item.id ? 'var(--primary)' : 'var(--border-glass)' }}>
-                          <h4 style={{ color: '#fff', fontSize: '0.9rem' }}>{item.data.name}</h4>
+                          <h4 style={{ color: 'var(--text-main)', fontSize: '0.9rem' }}>{item.data.name}</h4>
                           <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Date: {item.data.visitDate} ({item.data.guestsCount} guests)</span>
                           <span style={{ display: 'block', fontSize: '0.72rem', color: 'var(--primary)', marginTop: '4px' }}>{item.timestamp}</span>
                         </div>
@@ -922,7 +948,7 @@ export default function Admin({ siteData, reloadSiteData }) {
 
                       {activeSubTab === 'ministry' && (submissions.ministry || []).map(item => (
                         <div key={item.id} onClick={() => setSelectedInboxItem(item)} className="glass-card" style={{ padding: '12px', cursor: 'pointer', background: selectedInboxItem?.id === item.id ? 'var(--primary-glow)' : 'rgba(255,255,255,0.01)', borderColor: selectedInboxItem?.id === item.id ? 'var(--primary)' : 'var(--border-glass)' }}>
-                          <h4 style={{ color: '#fff', fontSize: '0.9rem' }}>{item.data.name}</h4>
+                          <h4 style={{ color: 'var(--text-main)', fontSize: '0.9rem' }}>{item.data.name}</h4>
                           <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Dept: {item.data.ministry_name}</span>
                           <span style={{ display: 'block', fontSize: '0.72rem', color: 'var(--primary)', marginTop: '4px' }}>{item.timestamp}</span>
                         </div>
@@ -930,7 +956,7 @@ export default function Admin({ siteData, reloadSiteData }) {
 
                       {activeSubTab === 'academy' && (submissions.academy || []).map(item => (
                         <div key={item.id} onClick={() => setSelectedInboxItem(item)} className="glass-card" style={{ padding: '12px', cursor: 'pointer', background: selectedInboxItem?.id === item.id ? 'var(--primary-glow)' : 'rgba(255,255,255,0.01)', borderColor: selectedInboxItem?.id === item.id ? 'var(--primary)' : 'var(--border-glass)' }}>
-                          <h4 style={{ color: '#fff', fontSize: '0.9rem' }}>{item.data.name}</h4>
+                          <h4 style={{ color: 'var(--text-main)', fontSize: '0.9rem' }}>{item.data.name}</h4>
                           <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Course: {item.data.course_title}</span>
                           <span style={{ display: 'block', fontSize: '0.72rem', color: 'var(--primary)', marginTop: '4px' }}>{item.timestamp}</span>
                         </div>
@@ -938,7 +964,7 @@ export default function Admin({ siteData, reloadSiteData }) {
 
                       {activeSubTab === 'testimonies' && (submissions.testimonies || []).map(item => (
                         <div key={item.id} onClick={() => setSelectedInboxItem(item)} className="glass-card" style={{ padding: '12px', cursor: 'pointer', background: selectedInboxItem?.id === item.id ? 'var(--primary-glow)' : 'rgba(255,255,255,0.01)', borderColor: selectedInboxItem?.id === item.id ? 'var(--primary)' : 'var(--border-glass)' }}>
-                          <h4 style={{ color: '#fff', fontSize: '0.9rem' }}>{item.data.name}</h4>
+                          <h4 style={{ color: 'var(--text-main)', fontSize: '0.9rem' }}>{item.data.name}</h4>
                           <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Cat: {item.data.category} &bull; {item.data.title.slice(0, 20)}...</span>
                           <span style={{ display: 'block', fontSize: '0.72rem', color: 'var(--primary)', marginTop: '4px' }}>{item.timestamp}</span>
                         </div>
@@ -951,7 +977,7 @@ export default function Admin({ siteData, reloadSiteData }) {
                         <div>
                           <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-glass)', paddingBottom: '10px', marginBottom: '15px' }}>
                             <div>
-                              <h3 style={{ color: '#fff', fontSize: '1.2rem' }}>
+                              <h3 style={{ color: 'var(--text-main)', fontSize: '1.2rem' }}>
                                 {activeSubTab === 'messages' && selectedInboxItem.subject}
                                 {activeSubTab === 'visits' && `Plan Visit Request from ${selectedInboxItem.data.name}`}
                                 {activeSubTab === 'ministry' && `Ministry Join Request: ${selectedInboxItem.data.ministry_name}`}
@@ -1043,7 +1069,7 @@ export default function Admin({ siteData, reloadSiteData }) {
             {/* Portal security settings */}
             {activeTab === 'security' && (
               <form onSubmit={handlePasswordChangeSubmit} className="glass-card" style={{ maxWidth: '480px' }}>
-                <h2 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '20px', color: '#fff' }}>Change Admin Password</h2>
+                <h2 className="font-serif" style={{ fontSize: '1.5rem', marginBottom: '20px' }}>Change Admin Password</h2>
                 <div className="form-group">
                   <label className="form-label">Current Password</label>
                   <input className="form-control" type="password" required value={securityForm.current} onChange={e => setSecurityForm({...securityForm, current: e.target.value})} />

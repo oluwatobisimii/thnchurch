@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Play, Search, Video, Download, Radio, Calendar, User, Sparkles, ArrowRight, ExternalLink } from 'lucide-react';
-import AnimatedSection, { StaggerContainer, StaggerItem } from '../components/AnimatedSection';
+import { getYouTubeThumb } from '../utils/youtube';
+import AnimatedSection, { StaggerContainer, StaggerItem, RH1, RH2 } from '../components/AnimatedSection';
 
 export default function Watch({ siteData }) {
   const [search, setSearch] = useState('');
@@ -32,9 +33,9 @@ export default function Watch({ siteData }) {
         <span className="badge badge-gold" style={{ marginBottom: '16px' }}>
           Media & Broadcast Hub
         </span>
-        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '18px' }}>
+        <RH1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '18px' }}>
           Watch & Listen Live
-        </h1>
+        </RH1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1.15rem', maxWidth: '740px', margin: '0 auto', lineHeight: '1.8' }}>
           Encounter life-transforming apostolic teachings and atmospheric worship anytime, anywhere.
         </p>
@@ -42,7 +43,7 @@ export default function Watch({ siteData }) {
 
       {/* Main Broadcast Broadcast Cards */}
       <section style={{ marginBottom: '80px' }}>
-        <StaggerContainer style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '36px' }}>
+        <StaggerContainer className="stack-md" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '36px' }}>
           
           {/* Main Livestream Card */}
           <StaggerItem className="white-card" style={{ 
@@ -121,7 +122,7 @@ export default function Watch({ siteData }) {
         <AnimatedSection direction="up" style={{ marginBottom: '40px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '28px' }}>
             <div>
-              <h2 style={{ fontSize: '2.4rem', color: 'var(--text-main)' }}>Sermon Library</h2>
+              <RH2 style={{ fontSize: '2.4rem', color: 'var(--text-main)' }}>Sermon Library</RH2>
               <p style={{ color: 'var(--text-muted)', fontSize: '1rem', marginTop: '4px' }}>Browse teachings by topic, series, or speaker</p>
             </div>
             <span className="badge badge-gold">{filteredSermons.length} Messages Available</span>
@@ -129,7 +130,7 @@ export default function Watch({ siteData }) {
           
           {/* Controls: Search and Filters */}
           <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap', marginBottom: '32px' }}>
-            <div style={{ flexGrow: '1', minWidth: '280px', position: 'relative' }}>
+            <div style={{ flexGrow: '1', minWidth: 'min(280px, 100%)', position: 'relative' }}>
               <input 
                 type="text" 
                 placeholder="Search by title, series, or speaker..." 
@@ -162,6 +163,17 @@ export default function Watch({ siteData }) {
             {filteredSermons.map(sermon => (
               <StaggerItem key={sermon.id} className="white-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '36px' }}>
                 <div>
+                  <a href={sermon.link} target="_blank" rel="noreferrer" className="sermon-thumb" aria-label={`Watch ${sermon.title}`}>
+                    {getYouTubeThumb(sermon.link) ? (
+                      <img src={getYouTubeThumb(sermon.link)} alt="" loading="lazy" />
+                    ) : (
+                      <span className="sermon-thumb-fallback">
+                        <img src="/thnlogo.png" alt="" />
+                        <span>{sermon.title}</span>
+                      </span>
+                    )}
+                    <span className="sermon-play"><Play size={22} fill="#fff" color="#fff" /></span>
+                  </a>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                     <span className="badge badge-gold" style={{ fontSize: '0.74rem' }}>
                       {sermon.series}

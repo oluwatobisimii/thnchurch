@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Clock, Sparkles } from 'lucide-react';
 import { api } from '../utils/api';
-import AnimatedSection, { StaggerContainer, StaggerItem } from '../components/AnimatedSection';
+import AnimatedSection, { StaggerContainer, StaggerItem, RH1, RH2 } from '../components/AnimatedSection';
 
 export default function Contact({ siteData }) {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
@@ -41,22 +41,22 @@ export default function Contact({ siteData }) {
         <span className="badge badge-gold" style={{ marginBottom: '18px' }}>
           We Are Here For You
         </span>
-        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '18px' }}>
+        <RH1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '18px' }}>
           Contact Pastoral & Admin Team
-        </h1>
+        </RH1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1.15rem', maxWidth: '780px', margin: '0 auto', lineHeight: '1.8' }}>
           Have a prayer request, testimony, or inquiry about our programs? Reach out to us. We would love to hear from you.
         </p>
       </AnimatedSection>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: '56px', alignItems: 'start' }}>
+      <div className="stack-md" style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: '56px', alignItems: 'start' }}>
         
         {/* Contact Details */}
         <AnimatedSection direction="right">
           <span className="badge badge-gold" style={{ marginBottom: '14px' }}>Channels</span>
-          <h2 style={{ fontSize: '2.2rem', marginBottom: '28px', color: 'var(--text-main)' }}>
+          <RH2 style={{ fontSize: '2.2rem', marginBottom: '28px', color: 'var(--text-main)' }}>
             Get In Touch
-          </h2>
+          </RH2>
 
           <StaggerContainer style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <StaggerItem className="white-card" style={{ display: 'flex', gap: '20px', alignItems: 'center', padding: '28px' }}>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const socialUrl = (platform, handle) => {
@@ -17,6 +18,10 @@ const socialUrl = (platform, handle) => {
 };
 
 export default function Footer({ churchInfo }) {
+  const giantRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: giantRef, offset: ['start end', 'end end'] });
+  const x = useSpring(useTransform(scrollYProgress, [0, 1], ['-18%', '0%']), { stiffness: 80, damping: 20 });
+
   if (!churchInfo) return null;
   const { phones = {}, emails = {}, socials = {}, address = {} } = churchInfo;
 
@@ -89,7 +94,7 @@ export default function Footer({ churchInfo }) {
           </div>
         </div>
 
-        <div className="footer-giant" aria-hidden="true">Raising Giants</div>
+        <div className="footer-giant" aria-hidden="true" ref={giantRef}><motion.div style={{ x }}>Raising Giants</motion.div></div>
 
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} The HAvEN Nation Inc. All rights reserved.</span>

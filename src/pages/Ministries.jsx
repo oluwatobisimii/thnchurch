@@ -4,7 +4,7 @@ import {
   BookOpen, Sparkles, GraduationCap, Compass, ArrowRight 
 } from 'lucide-react';
 import { api } from '../utils/api';
-import AnimatedSection, { StaggerContainer, StaggerItem } from '../components/AnimatedSection';
+import AnimatedSection, { StaggerContainer, StaggerItem, RH1 } from '../components/AnimatedSection';
 
 export default function Ministries({ siteData }) {
   const [selectedMinistry, setSelectedMinistry] = useState(null);
@@ -80,9 +80,9 @@ export default function Ministries({ siteData }) {
         <span className="badge badge-gold" style={{ marginBottom: '18px' }}>
           Find Your Tribe & Community
         </span>
-        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '20px' }}>
+        <RH1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '20px' }}>
           Connect, Grow & Serve
-        </h1>
+        </RH1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1.15rem', maxWidth: '780px', margin: '0 auto', lineHeight: '1.8' }}>
           At THN, every member is a giant in training. Discover a tribe where you can build lifelong friendships, grow in spiritual authority, and make an eternal impact.
         </p>
@@ -185,7 +185,7 @@ export default function Ministries({ siteData }) {
                 <input className="form-control" type="text" id="name" required value={formData.name} onChange={handleFormChange} placeholder="e.g. Samuel Adekunle" />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div className="form-group">
                   <label className="form-label" htmlFor="email">Email *</label>
                   <input className="form-control" type="email" id="email" required value={formData.email} onChange={handleFormChange} placeholder="name@example.com" />
