@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Clock, MapPin, Sparkles, Plus, Minus, CheckCircle, ArrowRight, ShieldCheck, Heart, Car } from 'lucide-react';
 import { api } from '../utils/api';
-import AnimatedSection from '../components/AnimatedSection';
+import AnimatedSection, { RH1, RH2 } from '../components/AnimatedSection';
 
 export default function NewHere({ siteData }) {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', visitDate: '', serviceTime: 'Sunday 9:00 AM', guestsCount: '1' });
@@ -70,9 +70,9 @@ export default function NewHere({ siteData }) {
         <span className="badge badge-gold" style={{ marginBottom: '18px' }}>
           Your First Visit Guide
         </span>
-        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '20px' }}>
+        <RH1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '20px' }}>
           Welcome Home to THN
-        </h1>
+        </RH1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1.15rem', maxWidth: '780px', margin: '0 auto', lineHeight: '1.8' }}>
           Whether you are exploring Christianity for the first time or seeking a vibrant spiritual family to grow with, there is a seat saved for you at The HAvEN Nation.
         </p>
@@ -87,8 +87,8 @@ export default function NewHere({ siteData }) {
           />
           <div className="editorial-scrim"></div>
           <div className="editorial-badge" style={{ top: '24px', left: '24px' }}>
-            <Heart size={14} style={{ color: '#C2D971' }} />
-            <span>Real People &bull; Authentic Community &bull; Spiritual Growth</span>
+            <Heart size={14} />
+            <span>Real People<span className="hide-sm"> &bull; Authentic Community</span> &bull; Spiritual Growth</span>
           </div>
           <div style={{ position: 'absolute', bottom: '24px', left: '24px', right: '24px', color: '#FFFFFF' }}>
             <h3 style={{ fontSize: '1.4rem', color: '#FFFFFF', marginBottom: '6px' }}>Giants Theatre &bull; Oluyole, Ibadan</h3>
@@ -130,7 +130,7 @@ export default function NewHere({ siteData }) {
         
         {/* Left Column: What to Expect & FAQ */}
         <AnimatedSection direction="right">
-          <h2 style={{ fontSize: '2.2rem', marginBottom: '16px' }}>Frequently Asked Questions</h2>
+          <RH2 style={{ fontSize: '2.2rem', marginBottom: '16px' }}>Frequently Asked Questions</RH2>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.02rem', lineHeight: '1.75', marginBottom: '32px' }}>
             Got questions before attending? We've answered the most common ones below to help you feel right at home.
           </p>
@@ -215,7 +215,7 @@ export default function NewHere({ siteData }) {
               />
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
               <div className="form-group">
                 <label htmlFor="email" className="form-label">Email Address *</label>
                 <input 
@@ -243,7 +243,7 @@ export default function NewHere({ siteData }) {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
               <div className="form-group">
                 <label htmlFor="visitDate" className="form-label">Intended Date</label>
                 <input 

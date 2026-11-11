@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import { Wallet, CreditCard, Heart, CheckCircle2, Copy, Check, ExternalLink } from 'lucide-react';
-import AnimatedSection from '../components/AnimatedSection';
+import { Wallet, CreditCard, Heart, CheckCircle2, Copy, Check, ExternalLink, Landmark, MessageCircle, Phone } from 'lucide-react';
+import AnimatedSection, { RH1, RH2 } from '../components/AnimatedSection';
 
 export default function Giving({ siteData }) {
   const giving = siteData?.churchInfo?.giving || {};
+  const phones = siteData?.churchInfo?.phones || {};
   const [copiedKey, setCopiedKey] = useState(null);
+
+  const hasBank = Boolean(giving.accountNumber);
+  const paypalUrl = giving.paypal
+    ? (/^https?:\/\//.test(giving.paypal) ? giving.paypal : `https://${giving.paypal}`)
+    : null;
+  // "+234 704 100 0492" or "0704..." -> "2347041000492" for WhatsApp links
+  const toIntl = (n) => { const d = n.replace(/\D/g, ''); return d.startsWith('0') ? `234${d.slice(1)}` : d; };
 
   const copyToClipboard = (text, key) => {
     navigator.clipboard.writeText(text);
@@ -18,9 +26,9 @@ export default function Giving({ siteData }) {
         <span className="badge badge-gold" style={{ marginBottom: '18px' }}>
           Kingdom Partnership
         </span>
-        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '20px' }}>
+        <RH1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '20px' }}>
           Giving & Sowing
-        </h1>
+        </RH1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1.15rem', maxWidth: '780px', margin: '0 auto', lineHeight: '1.8' }}>
           Your cheerful giving fuels kingdom transformation, gospel propagation, and compassion outreaches across Ibadan, Nigeria, and beyond.
         </p>
@@ -33,9 +41,9 @@ export default function Giving({ siteData }) {
           <span className="badge badge-gold" style={{ marginBottom: '16px' }}>
             Why We Give
           </span>
-          <h2 style={{ fontSize: '2.2rem', marginBottom: '18px', color: 'var(--text-main)' }}>
+          <RH2 style={{ fontSize: '2.2rem', marginBottom: '18px', color: 'var(--text-main)' }}>
             Partner In Kingdom Impact
-          </h2>
+          </RH2>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.02rem', lineHeight: '1.8', marginBottom: '32px' }}>
             Every seed, tithe, and partnership offering you sow directly empowers gospel expansion, campus revival crusades, discipleship schools, and compassionate neighborhood welfare.
           </p>
@@ -85,107 +93,96 @@ export default function Giving({ siteData }) {
           </div>
         </AnimatedSection>
 
-        {/* Giving Channels */}
+        {/* Giving Channels: each one shows only when its details are filled in (Admin → Site Configuration) */}
         <AnimatedSection direction="left" style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-          
-          {/* Paystack Channel */}
-          {giving.paystack && (
+
+          {hasBank && (
             <div className="white-card" style={{ borderTop: '4px solid var(--primary)', padding: '36px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                <h3 style={{ fontSize: '1.4rem', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <CreditCard size={24} style={{ color: 'var(--primary)' }} />
-                  Paystack (Nigeria / Local Transfer)
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '16px' }}>
+                <h3 style={{ fontSize: '1.4rem', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <Landmark size={24} style={{ color: 'var(--primary)' }} />
+                  Bank Transfer
                 </h3>
-                <span className="badge badge-gold">NGN &bull; Cards & Transfer</span>
+                <span className="badge badge-gold">NGN</span>
               </div>
-              
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.96rem', marginBottom: '22px', lineHeight: '1.7' }}>
-                Sow your tithes, general offering, building seed, or sacrificial offering securely via Paystack.
+              <p style={{ fontSize: '0.96rem', marginBottom: '20px', lineHeight: '1.7' }}>
+                Send your tithe, offering or seed straight to the church account.
               </p>
-
-              <div style={{ 
-                background: 'var(--bg-secondary)', 
-                padding: '16px 20px', 
-                borderRadius: 'var(--radius-sm)', 
-                border: '1px dashed var(--border-color)', 
-                marginBottom: '20px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center'
-              }}>
-                <div>
-                  <span style={{ fontSize: '0.76rem', color: 'var(--text-subtle)', display: 'block', textTransform: 'uppercase', fontWeight: '700' }}>Account ID / Payment Email:</span>
-                  <span style={{ fontSize: '1.05rem', color: 'var(--text-main)', fontWeight: '700', fontFamily: 'monospace' }}>{giving.paystack}</span>
+              {[
+                ['Bank', giving.bankName, null],
+                ['Account Name', giving.accountName, null],
+                ['Account Number', giving.accountNumber, 'acct'],
+              ].filter(([, v]) => v).map(([label, value, key]) => (
+                <div key={label} className="give-row">
+                  <div style={{ minWidth: 0, overflowWrap: 'anywhere' }}>
+                    <span className="give-label">{label}</span>
+                    <span className={key ? 'give-value give-mono' : 'give-value'}>{value}</span>
+                  </div>
+                  {key && (
+                    <button onClick={() => copyToClipboard(value, key)} className="btn btn-secondary" style={{ padding: '8px 16px', fontSize: '0.82rem' }}>
+                      {copiedKey === key ? <Check size={14} /> : <Copy size={14} />}
+                      <span>{copiedKey === key ? 'Copied!' : 'Copy'}</span>
+                    </button>
+                  )}
                 </div>
-                <button 
-                  onClick={() => copyToClipboard(giving.paystack, 'paystack')}
-                  className="btn btn-secondary"
-                  style={{ padding: '8px 16px', fontSize: '0.82rem' }}
-                >
-                  {copiedKey === 'paystack' ? <Check size={14} style={{ color: '#10B981' }} /> : <Copy size={14} />}
-                  <span>{copiedKey === 'paystack' ? "Copied!" : "Copy"}</span>
-                </button>
-              </div>
+              ))}
+            </div>
+          )}
 
-              <a 
-                href={`mailto:${giving.paystack}?subject=Sowing Seeds / Kingdom Partnership Inquiry`} 
-                className="btn btn-primary" 
-                style={{ width: '100%', padding: '14px', fontSize: '0.94rem', justifyContent: 'center' }}
-              >
-                Request Paystack Payment Invoice
+          {giving.paystackLink && (
+            <div className="white-card" style={{ borderTop: '4px solid var(--orange)', padding: '36px' }}>
+              <h3 style={{ fontSize: '1.4rem', display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                <CreditCard size={24} style={{ color: 'var(--primary)' }} />
+                Card, USSD or Transfer
+              </h3>
+              <p style={{ fontSize: '0.96rem', marginBottom: '22px', lineHeight: '1.7' }}>
+                Give securely online with Paystack.
+              </p>
+              <a href={giving.paystackLink} target="_blank" rel="noreferrer" className="btn btn-primary" style={{ width: '100%' }}>
+                Give Online <ExternalLink size={15} />
               </a>
             </div>
           )}
 
-          {/* PayPal Channel */}
-          {giving.paypal && (
-            <div className="white-card" style={{ borderTop: '4px solid #1C0016', padding: '36px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                <h3 style={{ fontSize: '1.4rem', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          {paypalUrl && (
+            <div className="white-card" style={{ borderTop: '4px solid var(--purple-deep)', padding: '36px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '16px' }}>
+                <h3 style={{ fontSize: '1.4rem', display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <Wallet size={24} style={{ color: 'var(--primary)' }} />
-                  PayPal (International / Global)
+                  PayPal
                 </h3>
-                <span className="badge badge-dark">USD &bull; Global</span>
+                <span className="badge badge-dark">International</span>
               </div>
-
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.96rem', marginBottom: '22px', lineHeight: '1.7' }}>
-                For partners, diaspora members, and well-wishers living outside Nigeria who wish to sow in USD, GBP, EUR, or CAD.
+              <p style={{ fontSize: '0.96rem', marginBottom: '22px', lineHeight: '1.7' }}>
+                For partners outside Nigeria giving in USD, GBP, EUR or CAD.
               </p>
-
-              <div style={{ 
-                background: 'var(--bg-secondary)', 
-                padding: '16px 20px', 
-                borderRadius: 'var(--radius-sm)', 
-                border: '1px dashed var(--border-color)', 
-                marginBottom: '20px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center'
-              }}>
-                <div>
-                  <span style={{ fontSize: '0.76rem', color: 'var(--text-subtle)', display: 'block', textTransform: 'uppercase', fontWeight: '700' }}>PayPal Handle:</span>
-                  <span style={{ fontSize: '1.05rem', color: 'var(--text-main)', fontWeight: '700', fontFamily: 'monospace' }}>{giving.paypal}</span>
-                </div>
-                <button 
-                  onClick={() => copyToClipboard(`https://${giving.paypal}`, 'paypal')}
-                  className="btn btn-secondary"
-                  style={{ padding: '8px 16px', fontSize: '0.82rem' }}
-                >
-                  {copiedKey === 'paypal' ? <Check size={14} style={{ color: '#10B981' }} /> : <Copy size={14} />}
-                  <span>{copiedKey === 'paypal' ? "Copied!" : "Copy Link"}</span>
-                </button>
-              </div>
-
-              <a 
-                href={`https://${giving.paypal}`} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="btn btn-secondary" 
-                style={{ width: '100%', padding: '14px', fontSize: '0.94rem', justifyContent: 'center' }}
-              >
-                <span>Give via PayPal</span>
-                <ExternalLink size={15} />
+              <a href={paypalUrl} target="_blank" rel="noreferrer" className="btn btn-secondary" style={{ width: '100%' }}>
+                Give via PayPal <ExternalLink size={15} />
               </a>
+            </div>
+          )}
+
+          {!hasBank && !giving.paystackLink && !paypalUrl && (
+            <div className="white-card" style={{ borderTop: '4px solid var(--primary)', padding: '36px' }}>
+              <h3 style={{ fontSize: '1.4rem', display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                <Heart size={24} style={{ color: 'var(--primary)' }} />
+                Get Giving Details
+              </h3>
+              <p style={{ fontSize: '0.96rem', marginBottom: '22px', lineHeight: '1.7' }}>
+                Our online giving channels are being updated. Call or WhatsApp the care line and we'll send you the church account details straight away.
+              </p>
+              <div style={{ display: 'grid', gap: '12px' }}>
+                {phones.careLine1 && (
+                  <a href={`https://wa.me/${toIntl(phones.careLine1)}?text=${encodeURIComponent('Hello THN, please send me the church giving details.')}`} target="_blank" rel="noreferrer" className="btn btn-primary" style={{ width: '100%' }}>
+                    <MessageCircle size={16} /> WhatsApp {phones.careLine1}
+                  </a>
+                )}
+                {phones.careLine2 && (
+                  <a href={`tel:${phones.careLine2.replace(/\s/g, '')}`} className="btn btn-secondary" style={{ width: '100%' }}>
+                    <Phone size={16} /> Call {phones.careLine2}
+                  </a>
+                )}
+              </div>
             </div>
           )}
 

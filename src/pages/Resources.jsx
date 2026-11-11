@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen, FileText, Download, GraduationCap, CheckCircle, X, ArrowRight, User } from 'lucide-react';
 import { api } from '../utils/api';
-import AnimatedSection, { StaggerContainer, StaggerItem } from '../components/AnimatedSection';
+import AnimatedSection, { StaggerContainer, StaggerItem, RH1, RH2 } from '../components/AnimatedSection';
 
 export default function Resources({ siteData }) {
   const [selectedCourse, setSelectedCourse] = useState(null);
@@ -60,15 +60,15 @@ export default function Resources({ siteData }) {
         <span className="badge badge-gold" style={{ marginBottom: '18px' }}>
           Spiritual Growth & Training
         </span>
-        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '18px' }}>
+        <RH1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', marginBottom: '18px' }}>
           Resources & Giants Academy
-        </h1>
+        </RH1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1.15rem', maxWidth: '780px', margin: '0 auto', lineHeight: '1.8' }}>
           Deepen your relationship with God through our daily Impact Notes devotional and systematic worker discipleship courses.
         </p>
       </AnimatedSection>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '48px', alignItems: 'start' }}>
+      <div className="stack-md" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '48px', alignItems: 'start' }}>
         
         {/* Left Column: Daily Devotionals & Academy Courses */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
@@ -85,7 +85,7 @@ export default function Resources({ siteData }) {
                   <BookOpen size={24} />
                 </div>
                 <div>
-                  <h2 style={{ fontSize: '1.8rem', color: 'var(--text-main)', margin: 0 }}>Daily Impact Note</h2>
+                  <RH2 style={{ fontSize: '1.8rem', color: 'var(--text-main)', margin: 0 }}>Daily Impact Note</RH2>
                   <span style={{ fontSize: '0.84rem', color: 'var(--text-muted)' }}>Daily prophetic nourishment for giants</span>
                 </div>
               </div>
@@ -150,7 +150,7 @@ export default function Resources({ siteData }) {
                 <GraduationCap size={24} />
               </div>
               <div>
-                <h2 style={{ fontSize: '1.8rem', color: 'var(--text-main)', margin: 0 }}>THN Giants Academy</h2>
+                <RH2 style={{ fontSize: '1.8rem', color: 'var(--text-main)', margin: 0 }}>THN Giants Academy</RH2>
                 <span style={{ fontSize: '0.84rem', color: 'var(--text-muted)' }}>Structured worker discipleship & theology modules</span>
               </div>
             </AnimatedSection>

@@ -165,16 +165,29 @@ p { color: var(--text-muted); }
   background-color: var(--bg-primary);
 }
 
-main { flex-grow: 1; }
+main { flex-grow: 1; overflow-x: clip; }
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--orange), var(--lime));
+  transform-origin: 0 50%;
+  z-index: 200;
+  pointer-events: none;
+}
 
 .container {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 clamp(16px, 4vw, 40px);
+  padding: 0 clamp(20px, 4vw, 40px);
 }
 
-.section-padding { padding: clamp(64px, 9vw, 112px) 0; }
+/* Only vertical padding, so it can sit on the same element as .container */
+.section-padding { padding-top: clamp(56px, 9vw, 112px); padding-bottom: clamp(56px, 9vw, 112px); }
 
 /* Film-grain texture for dark/colour sections */
 .grain { position: relative; isolation: isolate; }
@@ -395,6 +408,14 @@ main { flex-grow: 1; }
   align-items: center;
   gap: 8px;
   z-index: 2;
+  white-space: nowrap;
+  max-width: calc(100% - 28px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 560px) {
+  .editorial-badge { top: 14px !important; left: 14px !important; font-size: 0.74rem; padding: 6px 12px; }
+  .hide-sm { display: none; }
 }
 
 /* Cards: ink-outlined "stickers" */
@@ -443,9 +464,10 @@ main { flex-grow: 1; }
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
   text-decoration: none;
   border: 2px solid var(--ink);
-  line-height: 1;
-  white-space: nowrap;
+  line-height: 1.15;
+  text-align: center;
 }
+@media (min-width: 641px) { .btn { white-space: nowrap; } }
 .btn:hover { transform: translate(-2px, -2px); }
 .btn:active { transform: translate(1px, 1px); box-shadow: none; }
 
@@ -469,6 +491,43 @@ main { flex-grow: 1; }
 
 [data-theme="dark"] .btn-primary,
 [data-theme="dark"] .btn-lime { box-shadow: 4px 4px 0 #000; border-color: #000; }
+
+/* ---------- Give page detail rows ---------- */
+.give-row {
+  display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+  background: var(--bg-secondary); padding: 14px 18px; border-radius: var(--radius-sm);
+  border: 1px dashed var(--border-color); margin-bottom: 10px;
+}
+.give-label { font-size: 0.74rem; color: var(--text-subtle); display: block; text-transform: uppercase; font-weight: 800; letter-spacing: 0.06em; }
+.give-value { font-size: 1.05rem; color: var(--text-main); font-weight: 700; }
+.give-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 1.2rem; letter-spacing: 0.04em; }
+
+/* ---------- Sermon thumbnails ---------- */
+.sermon-thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid var(--border-strong);
+  margin-bottom: 20px;
+  background: var(--purple-deep);
+}
+.sermon-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.sermon-thumb:hover img { transform: scale(1.05); }
+.sermon-thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(28, 0, 22, 0.55)); pointer-events: none; }
+.sermon-play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2;
+  width: 60px; height: 60px; border-radius: 50%; background: var(--orange); border: 3px solid #fff;
+  display: grid; place-items: center; transition: transform 0.2s;
+}
+.sermon-thumb:hover .sermon-play { transform: translate(-50%, -50%) scale(1.1); }
+.sermon-thumb-fallback {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 10px;
+  padding: 18px; background: linear-gradient(135deg, var(--purple) 0%, var(--purple-deep) 70%);
+  color: #fff; font-family: var(--font-display); text-transform: uppercase; font-size: 1.6rem; line-height: 0.95;
+}
+.sermon-thumb-fallback img { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%; background: #fff; transform: none !important; }
 
 /* ---------- Badges ---------- */
 .badge {
@@ -509,6 +568,18 @@ main { flex-grow: 1; }
 .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--border-focus); }
 
 /* ---------- Grid utilities ---------- */
+/* Let grid/flex children shrink instead of pushing the page sideways */
+.grid-2 > *, .grid-3 > *, .grid-4 > *, .stack-md > *, .stack-sm > * { min-width: 0; }
+.white-card, .glass-card, .feature-step-card { overflow-wrap: break-word; min-width: 0; }
+
+/* Add to any inline two-column grid so it stacks on smaller screens */
+@media (max-width: 900px) {
+  .stack-md { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .grid-2 { gap: 28px !important; }
+}
+@media (max-width: 560px) {
+  .stack-sm { grid-template-columns: 1fr !important; gap: 0 16px !important; }
+}
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
@@ -523,6 +594,28 @@ main { flex-grow: 1; }
 ::-webkit-scrollbar { width: 9px; height: 9px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
 ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 6px; }
+
+/* ---------- Phone tweaks ---------- */
+@media (max-width: 560px) {
+  .white-card, .glass-card { padding: 24px 20px !important; }
+  .feature-step-card { padding: 22px !important; }
+  .editorial-frame { max-height: 420px; }
+  .grid-3, .grid-4 { gap: 16px !important; }
+
+  /* Inline icon + text rows inside cards: tighter gap so the text gets the width */
+  .white-card[style*="display: flex"] { gap: 14px !important; }
+
+  /* Large inline section gaps from the inner pages are too tall on phones */
+  main [style*="margin-bottom: 64px"],
+  main [style*="margin-bottom: 72px"],
+  main [style*="margin-bottom: 80px"],
+  main [style*="margin-bottom: 88px"] { margin-bottom: 44px !important; }
+  main [style*="padding: 64px 32px"] { padding: 40px 20px !important; }
+
+  /* Nested info boxes inside cards */
+  .white-card [style*="padding: 24px 28px"],
+  .white-card [style*="padding: 18px 22px"] { padding: 16px !important; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { MotionConfig, AnimatePresence, motion } from 'framer-motion';
 import { api } from './utils/api';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { ScrollProgress } from './components/AnimatedSection';
 
 // Pages
 import Home from './pages/Home';
@@ -17,6 +19,7 @@ import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 
 export default function App() {
+  const location = useLocation();
   const [siteData, setSiteData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -89,10 +92,20 @@ export default function App() {
   }
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="app-container">
       <Navbar theme={theme} toggleTheme={toggleTheme} programs={siteData?.programs} />
+      <ScrollProgress />
       <main>
-        <Routes>
+        <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo({ top: 0, behavior: 'instant' })}>
+        <motion.div
+          key={location.pathname}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        >
+        <Routes location={location}>
           <Route path="/" element={<Home siteData={siteData} />} />
           <Route path="/about" element={<About siteData={siteData} />} />
           <Route path="/new-here" element={<NewHere siteData={siteData} />} />
@@ -104,8 +117,11 @@ export default function App() {
           <Route path="/contact" element={<Contact siteData={siteData} />} />
           <Route path="/admin" element={<Admin siteData={siteData} reloadSiteData={loadSiteData} />} />
         </Routes>
+        </motion.div>
+        </AnimatePresence>
       </main>
       <Footer churchInfo={siteData?.churchInfo} />
     </div>
+    </MotionConfig>
   );
 }
