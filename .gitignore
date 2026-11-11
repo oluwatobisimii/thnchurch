@@ -1,0 +1,44 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local tooling / scratch
+.claude/
+_backup-*/
+mockups/
+
+# Private source documents (contain personal contact details)
+THN site details.pdf
+
+# Live server data written by the PHP API — never commit, never deploy over
+public/api/data.json
+public/api/data.json.bak
+public/api/auth.json
+public/api/auth.seed.json
+public/api/messages.json
+public/api/visit_plans.json
+public/api/ministry_joins.json
+public/api/academy_registers.json
+public/api/testimonies_submitted.json
+.env

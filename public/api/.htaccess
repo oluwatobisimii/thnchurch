@@ -1,0 +1,14 @@
+# The API folder holds live data files (site content, admin password hash,
+# contact messages, form sign-ups). They must only be read through the PHP
+# endpoints, never downloaded directly.
+Options -Indexes
+
+<FilesMatch "\.(json|bak|log)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

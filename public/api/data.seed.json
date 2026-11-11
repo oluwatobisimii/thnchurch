@@ -1,0 +1,590 @@
+{
+    "churchInfo": {
+        "name": "The Haven Nation Inc",
+        "theme2026": "Rescue | Recovery | Restoration Experience All Through Year 2026",
+        "foundationDay": "6th March 2016",
+        "anniversary": "6th September 2020",
+        "physicalPlantingAnniversary": "17th January 2021",
+        "emails": {
+            "default": "thehavennation2016@gmail.com",
+            "official": "info@havenation.org",
+            "recovery": "Oluyentomiwa@yahoo.com",
+            "ministry": "Giantsdelight@havenation.org"
+        },
+        "phones": {
+            "careLine1": "+234 704 100 0492",
+            "careLine2": "+234 704 100 0493",
+            "streaming": "09069890758",
+            "mediaSuite": "07048858097"
+        },
+        "giving": {
+            "paypal": "PayPal.Me/HavenNation",
+            "paystack": "info@havenation.org"
+        },
+        "socials": {
+            "facebook": "thnchurch",
+            "instagram": "thnchurch",
+            "threads": "thnchurch",
+            "twitter": "thnchurch",
+            "telegram": "thnchurch",
+            "tiktok": "thnchurch",
+            "tiktokAlternative": "@Havenation2020@",
+            "youtube": "https://www.youtube.com/c/Thnchurch",
+            "mixlr": "https://mixlr.com/thnchurch",
+            "linktree": "thnchurch"
+        },
+        "address": {
+            "venue": "Giants Theatre",
+            "location": "Plot 9, Block A, Oluyole Main Estate, Ibadan, Nigeria",
+            "landmark": "Beside Ibadan Progressive Union"
+        },
+        "spotifyMusic": "Tomiwa.2020",
+        "bibleVersion": "Tomiwa.2020"
+    },
+    "programs": [
+        {
+            "id": "prog_1",
+            "name": "FUEL LOADING 2026 ⛽️",
+            "description": "We Fast / We Pray / We Receive. 12 Days Spiritual Exercise Of Waiting On The Lord For All THN Church Members And Ministry Partners. There Shall Be A Downpour of Divine Instructions, Notable Encounters And Spiritual Empowerment.",
+            "date": "5th January - 16th January 2026",
+            "time": "12noon / 3pm / 6pm Daily Options",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Pastor Tomiwa Oluyen",
+            "month": "January"
+        },
+        {
+            "id": "prog_2",
+            "name": "#1000 BURNT SACRIFICE SERVICE 2026 🐑",
+            "description": "Burning A Seed Of #1000 Before The Lord. A Special Service With Our Dear Man Of God.",
+            "date": "18th January 2026",
+            "time": "9am (Nig Time)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Pastor Tomiwa Oluyen",
+            "month": "January"
+        },
+        {
+            "id": "prog_3",
+            "name": "STRATEGIC GIANTS CONGRESS 2026 🔷",
+            "description": "Beholding A Corporate System That Works. Recalibrating A Corporate System That Works.",
+            "date": "23rd January - 24th January 2026",
+            "time": "6pm Daily (Nig Time)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Tomiwa & Olamide Oluyen",
+            "month": "January"
+        },
+        {
+            "id": "prog_4",
+            "name": "THN NEW YEAR THANKSGIVING SERVICE 2026 🎉",
+            "description": "We Celebrate Our Victory Into The New Year In A Grand Style.",
+            "date": "25th January 2026",
+            "time": "9am (Nig Time)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Pastor Tomiwa Oluyen",
+            "month": "January"
+        },
+        {
+            "id": "prog_5",
+            "name": "VALENTINE CELEBRATION IN THN ❤️",
+            "description": "Couples Night Out / Hot Seat Session.",
+            "date": "14th February 2026",
+            "time": "6pm (Nig Time)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Tomiwa & Olamide Oluyen",
+            "month": "February"
+        },
+        {
+            "id": "prog_6",
+            "name": "BURST LOVE CONFERENCE 2026 💖",
+            "description": "We Love / We Embrace / We celebrate.",
+            "date": "15th February 2026",
+            "time": "9am (Nig Time)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Tomiwa & Olamide Oluyen",
+            "month": "February"
+        },
+        {
+            "id": "prog_7",
+            "name": "WORD & IMPACT CONFERENCE 2026 💮",
+            "description": "Founders Day Anniversary Of The HAvEN Nation Inc. Theme: Shattering The Norm. A Time Of Impact And Celebration.",
+            "date": "4th & 8th March 2026",
+            "time": "6pm & 9am Respectively (Nig Time)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Pastor Tomiwa Oluyen",
+            "month": "March"
+        },
+        {
+            "id": "prog_8",
+            "name": "FEED & HUG 28 CELEBRATION 🎊",
+            "description": "34th Year Birthday Celebration of Our Dear Man of God. Celebration of The Grace of God In The Life of Tomiwa Oluyen Within Our Locality And The Social Media Space. Expected to Feed And Hug 28 people, Telling Them That Jesus Loves Them So Much [Personal Outreach].",
+            "date": "28th March 2026",
+            "time": "All Day Long",
+            "venue": "The City of Ibadan",
+            "host": "THN Central Board & Admin Block",
+            "month": "March"
+        },
+        {
+            "id": "prog_9",
+            "name": "EASTER CELEBRATION SERVICE 2026 ⚔️",
+            "description": "Celebrating The Death And Resurrection of Jesus. Good Friday Service (Communion & Worship Night): 3rd April 6pm. Easter Egg Hunt (Picnic & Hangout): 4th April 10am. Easter Celebration Service: 5th April 9am.",
+            "date": "3rd April - 5th April 2026",
+            "time": "Varying Times (Communion 6pm, Picnic 10am, Service 9am)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Tomiwa Oluyen",
+            "month": "April"
+        },
+        {
+            "id": "prog_10",
+            "name": "THN FINANCE SEMINAR WEEK 💵",
+            "description": "2 Days Conference For Entrepreneurs And Business Fellows.",
+            "date": "22nd & 26th April 2026",
+            "time": "6pm & 9am Respectively (Nig Time)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Tomiwa Oluyen",
+            "month": "April"
+        },
+        {
+            "id": "prog_11",
+            "name": "FEED & HUG 18 CELEBRATION 🎊",
+            "description": "32nd Year Birthday Celebration of Our Dear Woman Of God. Celebration Of The Grace of God In The Life of Olamide Tomiwa Oluyen. Expected To Feed And Hug 18 people, Telling Them That Jesus Loves Them So Much [Personal Outreach].",
+            "date": "18th May 2026",
+            "time": "All Day Long",
+            "venue": "The City of Ibadan",
+            "host": "THN Central Board & Admin Block",
+            "month": "May"
+        },
+        {
+            "id": "prog_12",
+            "name": "HEALING & MIRACLE SERVICE 2026 ⚱️",
+            "description": "Healing & Miracle Service 2026 With Tomiwa Oluyen. A Great Time Of Healing, Miracles & Deliverance.",
+            "date": "29th May 2026",
+            "time": "6pm - 9pm (Nig Time)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Tomiwa Oluyen",
+            "month": "May"
+        },
+        {
+            "id": "prog_13",
+            "name": "THN REAL MEN'S WEEK 2026 🧑",
+            "description": "Real Men's week special services.",
+            "date": "26th - 28th June 2026",
+            "time": "Varying Times",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Tomiwa Oluyen",
+            "month": "June"
+        },
+        {
+            "id": "prog_14",
+            "name": "STRATEGIC GIANTS CONGRESS 2026 🔷",
+            "description": "Recalibrating A Corporate System That Works. Special guest ministers.",
+            "date": "10th - 12th July 2026",
+            "time": "6pm Daily (Nig Time)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Tomiwa Oluyen",
+            "month": "July"
+        },
+        {
+            "id": "prog_15",
+            "name": "THN BLISSFUL LADY'S WEEK 2026 👩",
+            "description": "Blissful ladies week special services.",
+            "date": "24th - 26th July 2026",
+            "time": "Varying Times",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Olamide Tomiwa Oluyen",
+            "month": "July"
+        },
+        {
+            "id": "prog_16",
+            "name": "THN SUPER WEEKEND 2026 🏆",
+            "description": "Workforce & Partners Special Weekend Services.",
+            "date": "28th - 30th August 2026",
+            "time": "Varying Times",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "THN Church, Chief Executive Officer",
+            "month": "August"
+        },
+        {
+            "id": "prog_17",
+            "name": "PENIEL CONFERENCE 2026 ⚙️",
+            "description": "PENIEL Conference 2026 Is An Annual Conference of THN CHURCH. A Great Time of Encounter With The Word, The Prophetic And Worship.",
+            "date": "16th - 20th September 2026",
+            "time": "6pm & 9am Respectively (Nig Time)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Tomiwa Oluyen",
+            "month": "September"
+        },
+        {
+            "id": "prog_18",
+            "name": "NIGERIA INDEPENDENCE DAY CELEBRATION 🇳🇬",
+            "description": "Special Independence service.",
+            "date": "1st October 2026",
+            "time": "Varying Times",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Pastor Tomiwa Oluyen",
+            "month": "October"
+        },
+        {
+            "id": "prog_19",
+            "name": "THN CORPORATE OUTREACH 🏥",
+            "description": "Visitation To The Nigerian Prison Authority. agodi Prison, Ibadan Oyo State.",
+            "date": "4th October 2026",
+            "time": "2pm (Nig Time)",
+            "venue": "Agodi Prison, Ibadan",
+            "host": "THN Central Board",
+            "month": "October"
+        },
+        {
+            "id": "prog_20",
+            "name": "THN PARTNERS & WORKFORCE APPRECIATION NIGHT 🤝",
+            "description": "Workforce appreciation night dinner and service.",
+            "date": "22nd November 2026",
+            "time": "6pm (Nig Time)",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Tomiwa Oluyen",
+            "month": "November"
+        },
+        {
+            "id": "prog_21",
+            "name": "SPECIAL SERVICES IN DECEMBER 2026 🎄",
+            "description": "6th Dec: Special Service with THN President (Dress Code: DGSS Dynasty Giants Special). 13th Dec: Blissful Trail Service with THN Vice President (Dress Code: Old & Golden). 20th Dec: Special Service with THN Executive Pastor (Dress Code: Casual/Jersey). 20th Dec: THN Christmas Carol Night (6pm). 27th Dec: All White Sunday Service (9am). 27th Dec: Movie Night (7pm). 31st Dec: Crossover Service (6pm - 9pm).",
+            "date": "6th December - 31st December 2026",
+            "time": "Varying Times",
+            "venue": "Giants Theatre, Ibadan",
+            "host": "Tomiwa Oluyen",
+            "month": "December"
+        }
+    ],
+    "leadership": [
+        {
+            "role": "THN Lead Pastor",
+            "name": "Pastor Tomiwa Oluyen"
+        },
+        {
+            "role": "THN Co-Lead Pastor",
+            "name": "Pastor Olamide Tomiwa - Oluyen"
+        },
+        {
+            "role": "THN Executive Pastor",
+            "name": "Pastor Oluwaseun Fortune - Ibrahim"
+        },
+        {
+            "role": "THN Chief Financial Officer",
+            "name": "Mr Tomiwa Oyerinde"
+        },
+        {
+            "role": "THN Facility Manager",
+            "name": "Mr Temitayo Olodude"
+        }
+    ],
+    "ministries": [
+        {
+            "name": "THN Impact Ministry",
+            "leader": "Pastor Olamide Tomiwa - Oluyen"
+        },
+        {
+            "name": "THN Care Foundation",
+            "leader": "Vacant"
+        },
+        {
+            "name": "THN Music & Arts Ministry",
+            "leader": "Giants Delight"
+        },
+        {
+            "name": "THN Men’s Ministry (Real Men)",
+            "leader": "Pastor Tomiwa Oluyen"
+        },
+        {
+            "name": "THN Women’s Ministry (Blissful Ladies)",
+            "leader": "Pastor Olamide Tomiwa - Oluyen"
+        },
+        {
+            "name": "THN Seniors Ministry",
+            "leader": "Vacant"
+        },
+        {
+            "name": "THN Children Ministry",
+            "leader": "Pastor Olamide Tomiwa - Oluyen"
+        },
+        {
+            "name": "THN Campus Ministry",
+            "leader": "Vacant"
+        }
+    ],
+    "departments": [
+        {
+            "name": "Haven Nation Service Teams (Helpers & Ushers)",
+            "leader": "Mr Tomiwa Oyerinde"
+        },
+        {
+            "name": "Haven Nation Protocols / Security",
+            "leader": "Mr Sunday Sasodje"
+        },
+        {
+            "name": "Haven Nation Sound, Internet And Media Production Team",
+            "leader": "Mr Olugbenga Fortune - Ibrahim"
+        },
+        {
+            "name": "THN Creatives",
+            "leader": "Vacant"
+        },
+        {
+            "name": "Haven Nation Hospitality (First Impression, Host, And Greeters)",
+            "leader": "Miss Nene Moses"
+        },
+        {
+            "name": "Haven Nation Church Care (Sanctuary keepers, Sanitation, Beauty Team, Decoration)",
+            "leader": "Vacant"
+        },
+        {
+            "name": "Transportation Department (Giants Cruise)",
+            "leader": "Mr Tomiwa Oyerinde"
+        },
+        {
+            "name": "Marriage and Counselling Department",
+            "leader": "Pastor Tomiwa & Olamide Oluyen"
+        },
+        {
+            "name": "Reach Out Ambassadors (Evangelism Team)",
+            "leader": "Pastor Oluwaseun Fortune - Ibrahim"
+        },
+        {
+            "name": "Follow Up and Baptism Department",
+            "leader": "Vacant"
+        },
+        {
+            "name": "Gratitude Department (All Celebration Team-Up)",
+            "leader": "Pastor Oluwaseun Fortune - Ibrahim"
+        },
+        {
+            "name": "Recognition and Membership Unit",
+            "leader": "Pastor Oluwaseun Fortune - Ibrahim"
+        },
+        {
+            "name": "Quality Control & Assurance",
+            "leader": "Mr Tomiwa Oyerinde"
+        }
+    ],
+    "prophecies": {
+        "yearTheme": "2026: Rescue | Recovery | Restoration Experience All Through Year 2026",
+        "havenNation": [
+            "The Arrival Of ( 5 ) Miracles Babies And Many Miracle Jobs",
+            "Sudden Moments Accompanied With Loud Celebrations",
+            "The Stone Of Help Experience Will Be A Daily Reality In Many Lives",
+            "The Arrival Of Long Awaited Blessings And Breakthroughs",
+            "The River Flow Of Strange Finance And Strange Assistance"
+        ],
+        "global": [
+            "The United States Of America Will Be Called To Order",
+            "The Nebuchadnezzar Experience Will Play Out Again In Real Time",
+            "Many Traditional And Political Seats Will Be Declared Vacant This Year",
+            "Another Media / Technological Wonder Will Be Unveiled And Widely Accepted",
+            "The Spark Of Revival Will Be So Intense And Greatly Felt On A Global Stage"
+        ],
+        "family": [
+            "The Restoration Experience Will Indeed Be A Reality",
+            "Appointments With Destiny Will Be A Reality In This Year 2026",
+            "Strange Locusts Will Be Disgraced And Strange Armies Will Be Displaced",
+            "Many Strange Altars Will Be Starved, Abandoned And Rendered Powerless",
+            "Intense Atmosphere Of Worship In Many Homes Will Provoke Divine Happenings"
+        ],
+        "general": [
+            "Put God First",
+            "Get Rid Of The Old Wine Skin",
+            "Engage Divine Orders"
+        ]
+    },
+    "declarations": {
+        "financial": [
+            "Year 2026 secures my path into financial freedom and increase",
+            "I am marvelously helped by God and full assisted by men",
+            "The yoke of lack is completely shattered and my heavens are ever opened",
+            "Without any form of reservation, I will always honor God with my wealth",
+            "The yoke of poverty hovering over my life and destiny is broken",
+            "All through the year 2026, The heavens over my head is graciously open",
+            "God rebukes the devourer for my sake and my household",
+            "Every spirit of wastage and environmental loss is destroyed",
+            "In this year 2026, I am positioned to plant my seeds on good grounds",
+            "I rebuke and cast out all Spirits of the cankerworm, palmerworm, caterpillar and locust",
+            "Every ground I occupy yields for me unimaginable increase and favorable abundance",
+            "The Lord takes pleasure in my seeds and confirms my good harvest without delay",
+            "The floodgates of heaven are open over me, and I receive more than I have enough room",
+            "In this year 2026, I receive dynamic ideas that will produce for me financial increase",
+            "God supplies all my needs according to His riches in glory and I am favored",
+            "Money flows into my hands with ease and I am ever in contact with good favors",
+            "By divine order, Strangers are commanded to bless me and ensure I Lack nothing",
+            "I am showered with gifts that I see in my dream, envision in my thoughts or that I mention",
+            "In this year 2026, My capacity to be a blessing increase daily",
+            "By divine order, I walk into such a strange space of wealth and divine inheritance",
+            "By the help of God, I launch out great and flourishing businesses and contracts",
+            "No more struggling, No more toiling, No more begging",
+            "My household is filled with rare and beautiful treasures",
+            "The Lord blesses and surrounds me with His favor and grace",
+            "I am christened blessed and highly favored",
+            "I am decorated as the head and not the tail",
+            "I am placed above only and not beneath",
+            "I am known to lend unto nations and not borrow",
+            "God gives me wisdom to prosper on every side",
+            "God restores unto me whatever I might have lost in time past",
+            "God gives me wisdom to profit in every business I am led to embark upon",
+            "God give me wisdom to yield good increase in every investment and business deals",
+            "I am blessed to be a blessing",
+            "This year 2026, My gist is all over the nations",
+            "That my life is decorated with honor, prosperity and wealth"
+        ],
+        "prophetic": [
+            "God my restorer and ever-present help",
+            "Thank you for engraving me in the palm of your hands and causing me to be favored",
+            "Thank you for your mighty hand upon my life and exalting my head even in strange places",
+            "Thank you for causing me to triumph on every side and putting new songs in my mouth",
+            "You have shut the mouth of strange lions and creeping serpents",
+            "You have burnt to ashes the camps of evil men and wicked spirits",
+            "You have given me a name that commands honor, royalty, wealth and blessings",
+            "You have secured for me a good portion in this year 2026 and restored all I ever lost",
+            "You have given a loud victory sound across the length and breadth of nations",
+            "You have confirmed my name, renewed my strength and changed my story forever",
+            "You have broken every gate of iron and ensured that I never look like the enemy’s script",
+            "You have invaded my space and given me such a harvest that is above my age and thoughts",
+            "Strange vaults holding templates of my past is destroyed down to ashes",
+            "The yoke of financial burden over my life and destiny is broken forever",
+            "Riches, honor, long-lasting wealth and prosperity are heavily stored in my house",
+            "Every corridor of my home is now filled with wisdom, and we are fully satisfied in the Lord",
+            "There will be such an outburst of divine revelation in my space",
+            "I will always be ahead of the enemy, and they will be confused for life",
+            "Tragedy is far from my location and only God’s goodness locates me with ease",
+            "Supernatural happenings and mind-blowing things become a daily experience in my home",
+            "Year 2026 will be for me and my household, the very season where God delivered mind blowing evidence of His faithfulness into my hands",
+            "Year 2026 will be for me and my household, the very season where God confirmed His word and promises concerning my life and destiny",
+            "Year 2026 is indeed my year where everything changed, and my name was heard abroad",
+            "Year 2026, The Lord rescues me, helps me recover all I ever lost and fully restores me",
+            "Every blessing with my name on it is delivered",
+            "Every breakthrough with my name on it is delivered",
+            "Every victory with my name on it will happen and be spread abroad",
+            "Thank you, Lord, because my declaration becomes my reality"
+        ],
+        "scripturalGuides": [
+            {
+                "number": 1,
+                "title": "Embrace The Good Shepherd And Disregard Every Hired Hand",
+                "verse": "John 10:11-14"
+            },
+            {
+                "number": 2,
+                "title": "Get Rid Of Old Time Tools, Filthy Garments And Old Wine Skin",
+                "verse": "Matthew 9:17"
+            },
+            {
+                "number": 3,
+                "title": "Renew Your Mind Daily And Anticipate The Supernatural",
+                "verse": "Romans 12:2"
+            },
+            {
+                "number": 4,
+                "title": "Engage Divine Orders And Disregard Every Unfamiliar Scripts",
+                "verse": "Genesis 26:1-3"
+            },
+            {
+                "number": 5,
+                "title": "Stretch And Make Tremendous Power Available",
+                "verse": "James 5:16"
+            },
+            {
+                "number": 6,
+                "title": "Intentionally Release Fragrance Of Worship",
+                "verse": "Psalms 16:8-11"
+            },
+            {
+                "number": 7,
+                "title": "Strategically Sow Seeds In Landmark Areas",
+                "verse": "Psalms 71:22-24"
+            },
+            {
+                "number": 8,
+                "title": "Adopt New, Better And Productive Strategies",
+                "verse": "Isaiah 43:18-19"
+            },
+            {
+                "number": 9,
+                "title": "Build, Trust And Initiate Profitable Relationships",
+                "verse": "John 15:1-8"
+            },
+            {
+                "number": 10,
+                "title": "Taste And See That The Lord Is Good",
+                "verse": "Psalms 34:8"
+            }
+        ]
+    },
+    "sermons": [
+        {
+            "id": "serm_1",
+            "title": "Seek ye First 2",
+            "speaker": "Pastor Oluwaseun Fortune-Ibrahim",
+            "series": "Seek ye First",
+            "topic": "Prayer",
+            "date": "2026-07-26",
+            "notes": "Fasting is beyond a religious ritual but a spiritual devotion empowering the space and the race set ahead for a true believer. It is the humbling of the soul and surrendering of self to the Lord for strength and a deeper relationship.",
+            "link": "https://www.youtube.com/watch?v=F9HTFv2yJSU"
+        },
+        {
+            "id": "serm_2",
+            "title": "Shattering The Norm",
+            "speaker": "Pastor Tomiwa Oluyen",
+            "series": "Word & Impact 2026",
+            "topic": "Faith",
+            "date": "2026-03-08",
+            "notes": "Transitioning from labor to favor. Understanding the prophetic alignment and positioning your heart for the outpouring of dynamic instructions and divine wisdom.",
+            "link": "https://www.youtube.com/c/Thnchurch"
+        }
+    ],
+    "devotionals": [
+        {
+            "id": "dev_1",
+            "title": "Starts With Putting God First",
+            "scripture": "Psalms 16:8-11",
+            "keyPoint": "Restoration starts with placing God at the absolute center of your daily operations.",
+            "writeup": "I keep my eyes always on the Lord. With him at my right hand, I will not be shaken. Therefore my heart is glad and my tongue rejoices; my body also will rest secure. Daily devotion means seeking his face before executing your strategic plans.",
+            "date": "2026-07-29"
+        },
+        {
+            "id": "dev_2",
+            "title": "Getting Rid Of The Old Wine Skin",
+            "scripture": "Matthew 9:17",
+            "keyPoint": "Embracing new strategies for the new season.",
+            "writeup": "Neither do people pour new wine into old wineskins. If they do, the skins will burst; the wine will run out and the wineskins will be ruined. No, they pour new wine into new wineskins, and both are preserved. Align your mindset, tools, and circles with where God is leading you today.",
+            "date": "2026-07-28"
+        }
+    ],
+    "testimonies": [
+        {
+            "id": "test_1",
+            "name": "Brother Afolabi",
+            "category": "Finance",
+            "title": "Supernatural Business Growth",
+            "content": "Since anchoring my business under the declarations for Year 2026, I have experienced unprecedented growth. A contract that had been locked for three years was signed within 12 days of our spiritual exercise. God indeed honors his word in The HAvEN Nation!",
+            "date": "2026-07-15"
+        },
+        {
+            "id": "test_2",
+            "name": "Sister Suzan",
+            "category": "Healing",
+            "title": "Complete Deliverance and Restoration",
+            "content": "I attended the Healing & Miracle service in May carrying severe joint pain. During the prayers, Pastor Tomiwa gave a word about chronic pain being rolled away. Instantly, the stiffness vanished. I can jump, run, and praise without any distress!",
+            "date": "2026-06-02"
+        }
+    ],
+    "courses": [
+        {
+            "id": "crs_1",
+            "title": "Giants Leadership Academy",
+            "instructor": "Pastor Tomiwa Oluyen",
+            "duration": "6 Weeks",
+            "description": "An intensive certification program equipping workers and leaders with core strategies of kingdom excellence, spiritual discipline, and administrative church operations."
+        },
+        {
+            "id": "crs_2",
+            "title": "Foundations of Faith",
+            "instructor": "Pastor Oluwaseun Fortune - Ibrahim",
+            "duration": "4 Weeks",
+            "description": "Essential lessons for new converts and members seeking a deep, unshakeable foundation in scriptural doctrines, prayer structures, and walking in prophecy."
+        }
+    ]
+}

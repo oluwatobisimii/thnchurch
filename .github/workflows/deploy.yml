@@ -1,0 +1,74 @@
+name: 🚀 Deploy website on push
+on:
+  push:
+    branches:
+      - production
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: 🔨 Build Project
+        run: |
+          npm ci
+          npm run build
+
+      # Creates the one-time admin password seed from the ADMIN_PASSWORD secret.
+      # The server only uses it if no admin password exists yet, so password
+      # changes made in the Admin panel are never overwritten by a deploy.
+      - name: 🔑 Prepare admin password seed
+        env:
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+        run: |
+          if [ -n "$ADMIN_PASSWORD" ]; then
+            php -r 'echo json_encode(["password_hash" => password_hash(getenv("ADMIN_PASSWORD"), PASSWORD_DEFAULT)], JSON_PRETTY_PRINT);' > dist/api/auth.seed.json
+            echo "Admin password seed created."
+          else
+            echo "::warning::ADMIN_PASSWORD secret is not set, so the admin login will not work on a fresh server."
+          fi
+
+      - name: ✅ Check build output
+        run: |
+          test -f dist/index.html
+          test -f dist/.htaccess
+          test -f dist/api/.htaccess
+          test -f dist/api/data.seed.json
+          ! test -f dist/api/data.json
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: ./
+          # Live data on the server is never touched by a deploy
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            api/data.json
+            api/data.json.bak
+            api/auth.json
+            api/messages.json
+            api/visit_plans.json
+            api/ministry_joins.json
+            api/academy_registers.json
+            api/testimonies_submitted.json
