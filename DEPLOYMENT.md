@@ -4,7 +4,7 @@ You do this once. After that, every push to the `production` branch deploys auto
 
 ## 1. Point the domain at the hosting
 
-If `havenation.org` is registered at Namecheap on the same account, go to **Domain List → Manage → Nameservers** and pick **Namecheap Web Hosting DNS**.
+If `thnchurch.org` is registered at Namecheap on the same account, go to **Domain List → Manage → Nameservers** and pick **Namecheap Web Hosting DNS**.
 
 If it's registered elsewhere, point its nameservers to the ones in your hosting welcome email (e.g. `dns1.namecheaphosting.com`, `dns2.namecheaphosting.com`).
 
@@ -14,8 +14,8 @@ DNS can take a few hours to update.
 
 In cPanel, open **Domains**:
 
-- If havenation.org is the **main domain** of the hosting account, its folder is `public_html`.
-- If it's an **addon domain**, its folder is the one shown in the "Document Root" column, e.g. `public_html/havenation.org` or `havenation.org`.
+- If thnchurch.org is the **main domain** of the hosting account, its folder is `public_html`.
+- If it's an **addon domain**, its folder is the one shown in the "Document Root" column, e.g. `public_html/thnchurch.org` or `thnchurch.org`.
 
 Write this folder down. You need it in step 4.
 
@@ -31,7 +31,7 @@ Open **File Manager** and go to that folder.
 
 1. In cPanel go to **FTP Accounts**.
 2. Fill in:
-   - **Log In:** `deploy`, which becomes `deploy@havenation.org`
+   - **Log In:** `deploy`, which becomes `deploy@thnchurch.org`
    - **Password:** use the generator and save the password somewhere safe
    - **Directory:** the website folder from step 2, exactly. cPanel pre-fills `public_html/deploy`, so **delete the `/deploy` part**.
    - **Quota:** Unlimited
@@ -41,12 +41,12 @@ Open **File Manager** and go to that folder.
 
 On the FTP Accounts page, scroll to your new account and click **Configure FTP Client**. Copy the **FTP Server** value, which looks like `server123.web-hosting.com`.
 
-Use this server hostname, not `ftp.havenation.org`. The deploy uses encrypted FTPS, and the server's certificate is issued for the server hostname.
+Use this server hostname, not `ftp.thnchurch.org`. The deploy uses encrypted FTPS, and the server's certificate is issued for the server hostname.
 
 ## 6. Turn on SSL (HTTPS)
 
 1. In cPanel open **SSL/TLS Status**.
-2. Tick `havenation.org` and `www.havenation.org`, then click **Run AutoSSL**.
+2. Tick `thnchurch.org` and `www.thnchurch.org`, then click **Run AutoSSL**.
 
 Wait until both show a green padlock. The site forces HTTPS, so it needs a valid certificate.
 
@@ -61,7 +61,7 @@ In the repo go to **Settings → Secrets and variables → Actions → New repos
 | Name             | Value                                                         |
 |------------------|---------------------------------------------------------------|
 | `FTP_HOST`       | the server hostname from step 5                               |
-| `FTP_USERNAME`   | `deploy@havenation.org`                                       |
+| `FTP_USERNAME`   | `deploy@thnchurch.org`                                       |
 | `FTP_PASSWORD`   | the password from step 4                                      |
 | `ADMIN_PASSWORD` | a strong first password for the `/admin` page                 |
 
@@ -78,18 +78,18 @@ Then watch **GitHub → Actions**. The first run uploads everything and takes a 
 
 ## 10. Check the live site
 
-- **Homepage:** `https://havenation.org` loads.
-- **Deep links:** `https://havenation.org/events` opens directly. If you get a 404, the `.htaccess` didn't upload; see troubleshooting.
-- **Data files are private:** `https://havenation.org/api/data.json` must show **403 Forbidden**.
-- **Admin:** log in at `https://havenation.org/admin` with your `ADMIN_PASSWORD`, then **change the password** from the Admin panel straight away.
-- **Contact form:** send a test message and check it arrives at `info@havenation.org`.
+- **Homepage:** `https://thnchurch.org` loads.
+- **Deep links:** `https://thnchurch.org/events` opens directly. If you get a 404, the `.htaccess` didn't upload; see troubleshooting.
+- **Data files are private:** `https://thnchurch.org/api/data.json` must show **403 Forbidden**.
+- **Admin:** log in at `https://thnchurch.org/admin` with your `ADMIN_PASSWORD`, then **change the password** from the Admin panel straight away.
+- **Contact form:** send a test message and check it arrives at the Official Email (`info@thnchurch.org`).
 
 ## 11. Make sure the form emails arrive
 
-The contact and sign-up forms send email with PHP from `noreply@havenation.org`.
+The contact and sign-up forms send email with PHP from `noreply@thnchurch.org` to the **Official Email** set in the Admin panel (currently `info@thnchurch.org`).
 
-- **Email Deliverability:** in cPanel open **Email Deliverability**. If SPF or DKIM shows a problem, click **Repair**.
-- **Inbox:** create the `info@havenation.org` mailbox in **Email Accounts** if it doesn't exist yet.
+- **Email Deliverability:** in cPanel open **Email Deliverability**. If SPF or DKIM shows a problem for `thnchurch.org`, click **Repair**. Otherwise the emails tend to land in spam.
+- **Inbox:** make sure `info@thnchurch.org` is a working mailbox, wherever thnchurch.org's email is hosted. To receive form emails at an address on the new domain instead, create it in **Email Accounts** and change the Official Email in the Admin panel.
 
 ## Troubleshooting
 

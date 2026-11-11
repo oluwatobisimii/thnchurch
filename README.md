@@ -1,6 +1,6 @@
 # THN Church Website
 
-Website for The HAvEN Nation Inc (THN Church), Ibadan.
+Website for The HAvEN Nation Inc (THN Church), Ibadan. Live at https://thnchurch.org.
 React + Vite on the front end, with a small PHP API (`public/api/`) that powers the Admin panel, contact form and sign-up forms.
 
 ## Local development
@@ -56,7 +56,7 @@ Set these in **Settings → Secrets and variables → Actions**:
 | Secret           | Value                                                        |
 |------------------|--------------------------------------------------------------|
 | `FTP_HOST`       | Your cPanel server hostname, e.g. `server123.web-hosting.com` |
-| `FTP_USERNAME`   | The FTP account, e.g. `deploy@havenation.org`                |
+| `FTP_USERNAME`   | The FTP account, e.g. `deploy@thnchurch.org`                |
 | `FTP_PASSWORD`   | That FTP account's password                                  |
 | `ADMIN_PASSWORD` | The first password for `/admin` (change it after first login) |
 

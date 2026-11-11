@@ -4,7 +4,9 @@ Options -Indexes
   RewriteEngine On
   RewriteBase /
 
-  # Force HTTPS (needs the free AutoSSL certificate active in cPanel)
+  # Send www and plain http to https://thnchurch.org (needs AutoSSL active in cPanel)
+  RewriteCond %{HTTP_HOST} ^www\.thnchurch\.org$ [NC]
+  RewriteRule ^ https://thnchurch.org%{REQUEST_URI} [L,R=301]
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
